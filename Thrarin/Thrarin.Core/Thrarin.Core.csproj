@@ -1,8 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <RootNamespace>Thrarin</RootNamespace>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Version>1.0.0.0</Version>
+    <Authors>OSTEPHAN</Authors>
+    <Company>Thrarin</Company>
+    <Product>Thrarin</Product>
+    <Description>Core interfaces to embed in any kind of project</Description>
   </PropertyGroup>
 
   <ItemGroup>
