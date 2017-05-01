@@ -52,7 +52,7 @@ namespace Thrarin.Storage
 
         public virtual void Install(string plateform, string environment)
         {
-//            throw new InstallEntityContextException();
+            throw new InstallEntityContextException();
         }
 
         public virtual IQueryable<T> Query<T>(string[] includes) where T : class, IEntity
