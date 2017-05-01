@@ -5,6 +5,7 @@ namespace Thrarin.Storage
     using System.Collections.Generic;
     using System.Linq;
     using System.Collections;
+    using System.Reflection;
 
     public interface IMemoryQuery : IEntityQuery
     {
@@ -56,7 +57,7 @@ namespace Thrarin.Storage
 
         public virtual IQueryable<T> Query<T>(string[] includes) where T : class, IEntity
         {
-            var memoryContextKeys = this.memoryContext.Keys.Where(k => k == typeof(T));
+            var memoryContextKeys = this.memoryContext.Keys.Where(k => k == typeof(T) || k.GetTypeInfo().BaseType == typeof(T));
 
             if (false == memoryContextKeys.Any())
             {
