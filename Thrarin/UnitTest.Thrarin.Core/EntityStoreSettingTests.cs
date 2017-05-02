@@ -8,10 +8,10 @@ namespace Thrarin.Tests
     using Storage;
 
     [TestClass]
-    public partial class EntityStoreSettingTests : AbstractTests
+    public class EntityStoreSettingTests : AbstractTests
     {
         [TestMethod]
-        private void UnitTestQueryMethod()
+        public void UnitTestQueryMethod()
         {
             var settingsProvider = this.serviceCollectionDependencyResolver.Resolve<ISettingsProvider>();
             Assert.AreEqual(0, settingsProvider.Query.Count());
