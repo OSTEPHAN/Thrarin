@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrarin.Core", "Thrarin.Core\Thrarin.Core.csproj", "{89869269-F87E-45FC-AB48-248263E0EA67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Thrarin.Core", "UnitTest.Thrarin.Core\UnitTest.Thrarin.Core.csproj", "{BFE42187-4F55-4D12-9890-54855887209D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{89869269-F87E-45FC-AB48-248263E0EA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89869269-F87E-45FC-AB48-248263E0EA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89869269-F87E-45FC-AB48-248263E0EA67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE42187-4F55-4D12-9890-54855887209D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE42187-4F55-4D12-9890-54855887209D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE42187-4F55-4D12-9890-54855887209D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE42187-4F55-4D12-9890-54855887209D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
