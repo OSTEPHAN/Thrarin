@@ -39,11 +39,14 @@ namespace Thrarin.Storage
                 isBaseTypeGenericType(t) &&
                 baseTypeAsGenericType(t) == typeof(EntityFrameworkConfiguration<>));
 
-            var methodInfo = typeof(EntityFrameworkConfiguration<>).GetMethod("OnModelCreating");
             configurationTypes
                 .Select(t => Activator.CreateInstance(t))
                 .ToList()
-                .ForEach(i => methodInfo.Invoke(i, new object[] { modelBuilder }));
+                .ForEach(i =>
+                {
+                    var methodInfo = i.GetType().GetMethod("OnModelCreating");
+                    methodInfo.Invoke(i, new object[] { modelBuilder });
+                });
         }
 
         void IEntityContext.Install(string plateform, string environment)

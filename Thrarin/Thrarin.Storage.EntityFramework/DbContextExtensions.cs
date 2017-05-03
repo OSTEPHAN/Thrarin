@@ -21,7 +21,13 @@ namespace Thrarin.Storage
             var seederTypes = dbContextAssemblyTypes.Where(t => 
                 isBaseTypeGenericType(t) && 
                 baseTypeAsGenericType(t) == typeof(EntityFrameworkSeed<>));
-            var seederType = seederTypes.FirstOrDefault(t => t.Name.ToLower() == plateform.ToLower()) ?? seederTypes.First();
+
+            var seederType = seederTypes.FirstOrDefault(t => t.Name.ToLower() == plateform.ToLower()) ?? seederTypes.FirstOrDefault();
+
+            if (seederType == null)
+            {
+                return;
+            }
 
             var seeder = Activator.CreateInstance(seederType, new object[] { dbContext });
             var seederMethod = seeder.GetType().GetMethods().FirstOrDefault(m => m.Name == "Seed");
