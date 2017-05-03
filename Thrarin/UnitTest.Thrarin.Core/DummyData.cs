@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Thrarin.Tests
 {
     using System.Collections;
+    using System.Collections.Generic;
 
+    using Caching;
     using Logging;
     using Storage;
 
@@ -23,6 +23,15 @@ namespace Thrarin.Tests
         public DummyContext(ILogger logger) : base(DummyContext.Repository)
         {
             this.logger = logger;
+        }
+    }
+
+    internal class DummyCacheProvider : MemoryCacheProvider
+    {
+        public List<Tuple<string, object, DateTimeOffset>> Cache => DummyCacheProvider.cache;
+        private readonly static List<Tuple<string, object, DateTimeOffset>> cache = new List<Tuple<string, object, DateTimeOffset>>();
+        public DummyCacheProvider() : base(DummyCacheProvider.cache)
+        {
         }
     }
 }

@@ -4,6 +4,7 @@ namespace Thrarin.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
 
+    using Caching;
     using Configuration;
     using Logging;
     using Storage;
@@ -30,6 +31,8 @@ namespace Thrarin.Tests
             dependencyResolver.Register<IEntityStore, DummyContext>();
             dependencyResolver.Register<IEntityQuery>(() => dependencyResolver.Resolve<IEntityStore>());
             dependencyResolver.Register<ISettingsProvider>(() => new EntityStoreSettingsProvider(dependencyResolver.Resolve<IEntityStore>()));
+            dependencyResolver.Register<DummyCacheProvider>(new DummyCacheProvider());
+            dependencyResolver.Register<ICacheProvider>(() => dependencyResolver.Resolve<DummyCacheProvider>());
             dependencyResolver.Configure();
         }
 
