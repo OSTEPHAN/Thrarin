@@ -10,7 +10,7 @@ namespace Thrarin.Storage
     {
         internal static void InstallContext(this DbContext dbContext, string plateform, string environment)
         {
-            dbContext.Database.EnsureCreated();
+            dbContext.Database.Migrate();
 
             var dbContextType = dbContext.GetType();
             var dbContextAssembly = dbContextType.GetTypeInfo().Assembly;
