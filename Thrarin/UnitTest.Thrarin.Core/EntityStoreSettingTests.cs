@@ -1,11 +1,10 @@
 ﻿
 namespace Thrarin.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Linq;
-
     using Configuration;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Storage;
+    using System.Linq;
 
     [TestClass]
     public class EntityStoreSettingTests : AbstractTests

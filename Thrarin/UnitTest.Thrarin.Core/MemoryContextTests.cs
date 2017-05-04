@@ -2,10 +2,8 @@
 namespace Thrarin.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Linq;
-
-    using Configuration;
     using Storage;
+    using System.Linq;
 
     [TestClass]
     public partial class MemoryContextTests : AbstractTests

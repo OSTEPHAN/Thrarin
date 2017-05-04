@@ -1,11 +1,10 @@
 ﻿
 namespace Thrarin.Tests
 {
+    using Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Reflection;
-
-    using Configuration;
 
     internal class ServiceCollectionDependencyResolver : IDependencyResolver
     {

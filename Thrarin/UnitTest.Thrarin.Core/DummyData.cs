@@ -1,21 +1,20 @@
-﻿using System;
-
+﻿
 namespace Thrarin.Tests
 {
-    using System.Collections;
-    using System.Collections.Generic;
-
     using Caching;
     using Logging;
     using Storage;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
-    internal class DummyData : IEntity
+    internal sealed class DummyData : IEntity
     {
         public Guid Id { get; set; }
         public int Value { get; set; }
     }
 
-    internal class DummyContext : MemoryContext
+    internal sealed class DummyContext : MemoryContext
     {
         private readonly ILogger logger;
         private readonly static Dictionary<Type, IEnumerable> Repository = new Dictionary<Type, IEnumerable>() { };
@@ -26,7 +25,7 @@ namespace Thrarin.Tests
         }
     }
 
-    internal class DummyCacheProvider : MemoryCacheProvider
+    internal sealed class DummyCacheProvider : MemoryCacheProvider
     {
         public List<Tuple<string, object, DateTimeOffset>> Cache => DummyCacheProvider.cache;
         private readonly static List<Tuple<string, object, DateTimeOffset>> cache = new List<Tuple<string, object, DateTimeOffset>>();

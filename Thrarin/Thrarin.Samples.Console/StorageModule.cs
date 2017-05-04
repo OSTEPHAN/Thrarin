@@ -9,26 +9,25 @@ namespace Thrarin.Console
     internal class DataContext : EntityFrameworkContext
     {
         public DbSet<Setting> Settings { get; set; }
-        private static readonly DbContextOptions<DataContext> Options = new DbContextOptionsBuilder<DataContext>()
-            .UseSqlite("Data Source=ConsoleSample.db")
-            .Options;
         public DataContext() : base()
         {
         }
-        public DataContext(DbContextOptions<DataContext> dbConnection) : base(dbConnection)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlite("Data Source=Console.db");
         }
-        protected override string SchemaName => "CONSOLE";
-        protected override string ConnectionString => @"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;";
+        protected override string SchemaName => string.Empty;
+        protected override string ConnectionString => string.Empty;
     }
-    internal sealed class SettingSqlMapping : Storage.EntityFrameworkConfiguration<Configuration.Setting>
+
+    internal sealed class SettingSqlMapping : EntityFrameworkConfiguration<Setting>
     {
         public SettingSqlMapping() : base()
         {
         }
         public override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Configuration.Setting>()
+            modelBuilder.Entity<Setting>()
                 .HasKey(s => s.Key);
         }
     }
@@ -37,7 +36,7 @@ namespace Thrarin.Console
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<DataContext>().As<EntityFrameworkContext>();
+            builder.RegisterType<DataContext>().As<EntityFrameworkContext>().SingleInstance();
             builder.RegisterType<EntityFrameworkStorage>().As<IEntityStore>();
             builder.Register<IEntityQuery>(ctx => ctx.Resolve<IEntityStore>())
 ;        }

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrarin.Storage.EntityFrame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Thrarin.Storage.Framework", "UnitTest.Thrarin.Storage.Framework\UnitTest.Thrarin.Storage.Framework.csproj", "{C20AD956-9198-4B55-AB79-B4B267E25AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrarin.Templates.Console", "Thrarin.Templates.Console\Thrarin.Templates.Console.csproj", "{A5D1AB74-D8DE-4011-AA9B-2339EB5D1E28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrarin.Samples.Console", "Thrarin.Samples.Console\Thrarin.Samples.Console.csproj", "{A5D1AB74-D8DE-4011-AA9B-2339EB5D1E28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

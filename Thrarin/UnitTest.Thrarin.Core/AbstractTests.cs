@@ -1,13 +1,12 @@
 ﻿
 namespace Thrarin.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
-
     using Caching;
     using Configuration;
     using Logging;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Storage;
+    using System;
 
     public abstract class AbstractTests : IDisposable
     {

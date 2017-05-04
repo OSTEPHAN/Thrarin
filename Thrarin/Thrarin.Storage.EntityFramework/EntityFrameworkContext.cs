@@ -29,7 +29,10 @@ namespace Thrarin.Storage
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.HasDefaultSchema(this.SchemaName);
+            if (!string.IsNullOrEmpty(this.SchemaName))
+            {
+                modelBuilder.HasDefaultSchema(this.SchemaName);
+            }
 
             var dbContextAssemblyTypes = this.GetType().GetTypeInfo().Assembly.GetTypes();
             Func<Type, bool> isBaseTypeGenericType = t => t.GetTypeInfo().BaseType?.GetTypeInfo().IsGenericType ?? false;

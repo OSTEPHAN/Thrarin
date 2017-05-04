@@ -1,9 +1,8 @@
 ﻿
 namespace Thrarin.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using Logging;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class EmptyLoggerTests : AbstractTests

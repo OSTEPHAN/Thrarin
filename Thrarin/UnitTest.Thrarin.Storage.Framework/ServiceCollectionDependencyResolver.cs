@@ -7,7 +7,7 @@ namespace Thrarin.Tests
 
     using Configuration;
 
-    internal class ServiceCollectionDependencyResolver : IDependencyResolver
+    internal sealed class ServiceCollectionDependencyResolver : IDependencyResolver
     {
         private IServiceProvider container;
         private ServiceCollection containerBuilder;
