@@ -10,10 +10,9 @@ namespace Thrarin.Storage
     {
         protected abstract string SchemaName { get; }
 
-        private readonly string connectionString;
-        protected EntityFrameworkContext(string connectionString) : base()
+        protected abstract string ConnectionString { get; }
+        protected EntityFrameworkContext() : base()
         {
-            this.connectionString = connectionString;
         }
         protected EntityFrameworkContext(DbContextOptions options) : base(options)
         {
@@ -23,7 +22,7 @@ namespace Thrarin.Storage
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlServer(this.ConnectionString);
             }
         }
 

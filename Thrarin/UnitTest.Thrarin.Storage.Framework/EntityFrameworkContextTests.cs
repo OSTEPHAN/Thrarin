@@ -27,7 +27,7 @@ namespace Thrarin.Tests
         public void TestEntityFrameworkCreateMethod()
         {
             var entityStore = this.serviceCollectionDependencyResolver.Resolve<Storage.IEntityStore>();
-            entityStore.Install(string.Empty, string.Empty);
+            entityStore.Install();
 
             var query = this.serviceCollectionDependencyResolver.Resolve<Storage.IEntityQuery>().Query<Configuration.Setting>();
             Assert.IsFalse(query.Any());

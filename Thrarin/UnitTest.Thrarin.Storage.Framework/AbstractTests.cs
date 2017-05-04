@@ -6,19 +6,41 @@ namespace Thrarin.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Storage;
     using System;
+    using System.Linq;
 
     public class DataContext : EntityFrameworkContext
     {
         public DbSet<Setting> Settings { get; set; }
-        public DataContext() : base(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;")
+        private static readonly DbContextOptions<DataContext> Options = new DbContextOptionsBuilder<DataContext>()
+            .UseInMemoryDatabase(databaseName: "Add_writes_to_database")
+            .Options;
+        public DataContext() : base()
         {
         }
         public DataContext(DbContextOptions<DataContext> dbConnection) : base(dbConnection)
         {
         }
-        protected override string SchemaName
+        protected override string SchemaName => "TEST";
+        protected override string ConnectionString => @"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;";
+
+        internal class DataContextSeed : EntityFrameworkSeed<DataContext>
         {
-            get { return "TEST"; }
+            public DataContextSeed(DataContext dataContext) : base(dataContext)
+            {
+            }
+            protected override void SeedForDevelopment()
+            {
+                this.EntityFrameworkContext.Settings.ToList().ForEach(s => this.EntityFrameworkContext.Remove(s));
+                this.EntityFrameworkContext.SaveChanges();
+            }
+            protected override void SeedForStaging()
+            {
+                throw new NotImplementedException();
+            }
+            protected override void SeedForProduction()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 
@@ -39,13 +61,7 @@ namespace Thrarin.Tests
 
         private void TestInitialize(IDependencyResolver dependencyResolver)
         {
-            var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(databaseName: "Add_writes_to_database")
-                .Options;
-            var context = new DataContext(options);
-            var storage = new EntityFrameworkStorage(context);
-
-            dependencyResolver.Register<IEntityStore>(storage);
+            dependencyResolver.Register<IEntityStore>(new EntityFrameworkStorage(new DataContext()));
             dependencyResolver.Register<IEntityQuery>(() => dependencyResolver.Resolve<IEntityStore>());
             dependencyResolver.Configure();
         }
