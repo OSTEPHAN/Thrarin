@@ -3,10 +3,10 @@
 namespace Thrarin.Console
 {
     using Autofac;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using System;
     using System.Linq;
-    using System.Reflection;
 
     internal sealed class FactoryLogger : Logging.ILogger
     {
@@ -51,10 +51,14 @@ namespace Thrarin.Console
         }
     }
 
-    internal sealed class LoggingModule : Autofac.Module
+    internal sealed class AutofacLoggingModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var loggingServiceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
+            var loggingFactory = loggingServiceProvider.GetRequiredService<ILoggerFactory>();
+            loggingFactory.AddConsole();
+            builder.Register(ctx => loggingFactory);
             builder.RegisterType<FactoryLogger>().As<Logging.ILogger>();
         }
     }
