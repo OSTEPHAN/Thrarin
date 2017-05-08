@@ -43,7 +43,8 @@ namespace Thrarin.Console
             var cache = autofac.Resolve<Caching.ICacheProvider>();
 
             logger.LogInformation("Starting ...");
-            while (System.Console.ReadKey().Key != System.ConsoleKey.Escape)
+//          Not available on Linux ...
+//          while (System.Console.ReadKey().Key != System.ConsoleKey.Escape)
             {
                 var cacheItem = cache.Get() as Post;
 
@@ -51,11 +52,16 @@ namespace Thrarin.Console
                 {
                     logger.LogInformation("Reading Cache");
                     logger.LogInformation(cacheItem.Title);
-                    continue;
+//                    continue;
                 }
 
                 logger.LogInformation("Setting Cache");
                 cache.Set(autofac.Resolve<IBlogService>().LastPost);
+
+                logger.LogInformation("Reading Cache");
+                cacheItem = (Post)cache.Get();
+                logger.LogInformation(cacheItem.Title);
+
             }
         }
     }

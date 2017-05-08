@@ -18,9 +18,18 @@ namespace Thrarin.Console
 
         private ILogger GetLogger(string location)
         {
-            var className = location.Split('.').FirstOrDefault();
-            var fullyClassName = string.Format("{0}.{1}", this.GetType().Namespace, className);
-            var classType = Type.GetType(fullyClassName);
+            Type classType;
+            try
+            {
+                var className = location.Split('.').FirstOrDefault();
+                var fullyClassName = string.Format("{0}.{1}", this.GetType().Namespace, className);
+                classType = Type.GetType(fullyClassName) ?? this.GetType();
+            }
+            catch
+            {
+                classType = this.GetType();
+            }
+
             var logger = this.coreFactory.CreateLogger(classType);
             return logger as ILogger;
         }

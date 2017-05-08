@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  thrarin.samples.console:
+    image: thrarin.samples.console
+    build:
+      context: ./Thrarin.Samples.Console
+      dockerfile: Dockerfile
